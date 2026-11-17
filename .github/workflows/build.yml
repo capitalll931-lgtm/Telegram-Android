@@ -28,7 +28,11 @@ jobs:
       - name: Generate Dummy Keystore
         run: |
           mkdir -p TMessagesProj/config
+          rm -f TMessagesProj/config/release.keystore
           keytool -genkey -v -keystore TMessagesProj/config/release.keystore -alias alias_name -keyalg RSA -keysize 2048 -validity 10000 -storepass password -keypass password -dname "CN=Android,O=Android,C=US"
+          echo "RELEASE_STORE_PASSWORD=password" >> gradle.properties
+          echo "RELEASE_KEY_ALIAS=alias_name" >> gradle.properties
+          echo "RELEASE_KEY_PASSWORD=password" >> gradle.properties
 
       - name: Build Debug APK
         run: |
