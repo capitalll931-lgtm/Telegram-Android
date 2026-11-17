@@ -176,9 +176,15 @@ public class StarsController {
     public TL_stars.StarsAmount balance = TL_stars.StarsAmount.ofStars(0);
     public long minus;
 
-    public TL_stars.StarsAmount getBalance() {
-        return getBalance(null);
+  public TL_stars.StarsAmount getBalance() {
+    if (ton) {
+        return TL_stars.StarsAmount.of(500_000000000L, 0);
     }
+    return TL_stars.StarsAmount.ofStars(100000);
+  }
+    
+        
+    
 
     @NonNull
     public AmountUtils.Amount getBalanceAmount() {
