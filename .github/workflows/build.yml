@@ -9,6 +9,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Free Disk Space
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android/sdk/ndk /opt/ghc /usr/local/share/boost
+          df -h
+
       - name: Checkout code
         uses: actions/checkout@v4
         with:
@@ -37,11 +42,11 @@ jobs:
       - name: Build Debug APK
         run: |
           chmod +x gradlew
-          ./gradlew assembleArm64Debug -x lint --stacktrace
+          ./gradlew assembleAfatDebug -x lint
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: Telegram-Mod-APK
-          path: TMessagesProj/build/outputs/apk/arm64/debug/*.apk
+          path: TMessagesProj/build/outputs/apk/afat/debug/*.apk
           
