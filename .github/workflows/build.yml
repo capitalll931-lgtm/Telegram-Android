@@ -37,11 +37,11 @@ jobs:
       - name: Build Debug APK
         run: |
           chmod +x gradlew
-          ./gradlew assembleAfatDebug
+          ./gradlew assembleArm64Debug -x lint --stacktrace
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: Telegram-Mod-APK
-          path: TMessagesProj/build/outputs/apk/afat/debug/*.apk
+          path: TMessagesProj/build/outputs/apk/arm64/debug/*.apk
           
